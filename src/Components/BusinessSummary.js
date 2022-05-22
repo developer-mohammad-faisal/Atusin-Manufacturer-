@@ -11,20 +11,17 @@ const BusinessSummary = () => {
   return (
     <Fragment>
       <section
-        className="p-7 bg-no-repeat bg-cover bg-center bg-fixed
-      "
-        style={{
-          backgroundImage: `url(https://i.ibb.co/gDB8Mr2/female-mechanic-holding-spare-parts-car.png)`,
-        }}
+        className="p-7"
       >
-        <div className="text-center text-info uppercase">
+        <div className="text-center text-primary uppercase">
           <h1 className="text-4xl font-bold">Millions Business Trust Us</h1>
           <h3 className="text-xl">Try to Understand User Expectation</h3>
+          
         </div>
 
         <div className="grid gap-5 text-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           <div class="card ">
-            <div class="card-body text-info">
+            <div class="card-body text-secondary">
               <h1 className="text-5xl font-bold">
                 {" "}
                 <FontAwesomeIcon icon={faUsersGear} />{" "}
@@ -35,7 +32,7 @@ const BusinessSummary = () => {
           </div>
 
           <div class="card ">
-            <div class="card-body text-info">
+            <div class="card-body text-secondary">
               <h1 className="text-5xl font-bold">
                 {" "}
                 <FontAwesomeIcon icon={faChartLine} />{" "}
@@ -46,7 +43,7 @@ const BusinessSummary = () => {
           </div>
 
           <div class="card  ">
-            <div class="card-body text-info">
+            <div class="card-body text-secondary">
               <h1 className="text-5xl font-bold">
                 {" "}
                 <FontAwesomeIcon icon={faStarHalfAlt} />{" "}
@@ -57,7 +54,7 @@ const BusinessSummary = () => {
           </div>
 
           <div class="card ">
-            <div class="card-body text-info">
+            <div class="card-body text-secondary">
               <h1 className="text-5xl font-bold">
                 {" "}
                 <FontAwesomeIcon icon={faScrewdriverWrench} />{" "}

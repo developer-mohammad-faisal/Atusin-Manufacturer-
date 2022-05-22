@@ -5,7 +5,7 @@ const PartsCard = ({ part }) => {
 
   return (
     <Fragment>
-      <div class="card card-compact bg-base-100 shadow-xl">
+      <div class="card card-hover card-compact bg-base-100 shadow-xl">
         <figure>
           <img width={300}
           className="rounded-lg"
@@ -13,7 +13,7 @@ const PartsCard = ({ part }) => {
             alt="Shoes"
           />
         </figure>
-        <div class="card-body">
+        <div class="card-body ">
           <h2 class="card-title">{name}</h2>
           <p>{description.slice(0, 150)}...</p> 
           <h2 className="text-1xl"> <span className="font-bold">Order Quantity</span> {orderQuantity}</h2>

@@ -14,7 +14,7 @@ const Brands = () => {
   return (
     <Fragment>
          <section className="p-7">
-        <h1 className="text-center text-3xl font-bold">View a selection of our most popular makes</h1>
+        <h1 className="text-center text-primary text-3xl font-bold">View a selection of our most popular makes</h1>
         <div className="grid gap-3 pt-8 mx-16 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {brands.map((brand) => (
              <div class="card shadow cursor-pointer">

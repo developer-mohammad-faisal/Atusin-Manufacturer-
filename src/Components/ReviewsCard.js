@@ -6,7 +6,7 @@ const ReviewsCard = ({ review }) => {
   return (
     <Fragment>
       <div class="card shadow-lg bg-base-100">
-        <div class="card-body ">
+        <div class="card-body hover:bg-slate-100  ">
           <div class="avatar flex items-center gap-x-2">
             <div class="w-10 rounded-full ring-offset-2">
               <img src={profile} alt="" />
