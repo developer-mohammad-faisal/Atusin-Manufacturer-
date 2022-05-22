@@ -1,47 +1,114 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <Fragment>
       <section>
-        <div class="hero min-h-screen bg-base-100">
-          <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div class="card-body">
-              <h1 class="text-3xl text-center font-bold">Login</h1>
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Email</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="email"
-                  class="input input-bordered"
-                />
-              </div>
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Password</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="password"
-                  class="input input-bordered"
-                />
-                <label class="label">
-                  <a href="#" class="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
-              <div class="form-control mt-6">
-                <button class="btn btn-primary">Login</button>
-              </div>
-              <Link to='/singUp' ><p className="text-end" >Crate an Account</p></Link>
-              <div class="divider">or</div>
-              <div class="form-control mt-3">
-                <button class="btn btn-accent">Continue with Google</button>
-              </div>
+        <div className="flex h-screen justify-center items-center">
+          <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card-body">
+              <h2 className="text-3xl text-center font-bold">Login</h2>
+
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="form-control w-full max-w-xs">
+                  <label className="label">
+                    <span className="label-text">Your Email</span>
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="Your Email"
+                    className="input input-bordered w-full max-w-xs"
+                    {...register("email", {
+                      required: {
+                        value: true,
+                        message: "Email is Required",
+                      },
+                      pattern: {
+                        value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                        message: "Provide a valid Email",
+                      },
+                    })}
+                  />
+
+                  <label className="label">
+                    {errors.email?.type === "required" && (
+                      <span className="label-text-alt text-red-500 ">
+                        {errors.email.message}
+                      </span>
+                    )}
+                    {errors.email?.type === "pattern" && (
+                      <span className="label-text-alt text-red-500 ">
+                        {errors.email.message}
+                      </span>
+                    )}
+                  </label>
+                </div>
+
+                <div className="form-control w-full max-w-xs">
+                  <label className="label">
+                    <span className="label-text">Password</span>
+                  </label>
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    className="input input-bordered w-full max-w-xs"
+                    {...register("password", {
+                      required: {
+                        value: true,
+                        message: "Password is Required",
+                      },
+                      minLength: {
+                        value: 6,
+                        message: "Must be 6 character or longer",
+                      },
+                    })}
+                  />
+
+                  <label className="label">
+                    {errors.password?.type === "required" && (
+                      <span className="label-text-alt text-red-500 ">
+                        {errors.password.message}
+                      </span>
+                    )}
+                    {errors.password?.type === "minLength" && (
+                      <span className="label-text-alt text-red-500 ">
+                        {errors.password.message}
+                      </span>
+                    )}
+                  </label>
+                </div>
+
+                {/* {setError} */}
+
+                <input className="btn w-full" type="submit" value="Login" />
+              </form>
+
+              <p>
+                <small>
+                  Setup Project{" "}
+                  <Link
+                    to="/singUp"
+                    className="text-primary ml-0 md:ml-32 lg:ml-32"
+                  >
+                    Create an account
+                  </Link>
+                </small>
+              </p>
+
+              <div className="divider">OR</div>
+              <button className="btn btn-outline">CONTINUE WITH GOOGLE</button>
             </div>
           </div>
         </div>

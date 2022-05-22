@@ -7,7 +7,7 @@ const Navbar = ({ children }) => {
       <div class="drawer drawer-end">
         <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col">
-          <div class="w-full navbar fixed top-0 z-50 bg-base-100 px-0 lg:px-16">
+          <div class="w-full navbar px-0 lg:px-16">
             <label
               tabindex="0"
               for="Dashboard-sidebar"
@@ -59,20 +59,14 @@ const Navbar = ({ children }) => {
                     Dashboard
                   </NavLink>
                 </li>
-
-                <li>
-                  <NavLink className="rounded-lg" to="/services">
-                    Services
-                  </NavLink>
-                </li>
                 <li>
                   <NavLink className="rounded-lg" to="/about">
-                    About
+                    My Portfolio
                   </NavLink>
                 </li>
                 <li>
                   <NavLink className="rounded-lg" to="/contact">
-                    Contact
+                    Blog
                   </NavLink>
                 </li>
                 <li>
@@ -100,18 +94,13 @@ const Navbar = ({ children }) => {
             </li>
 
             <li>
-              <NavLink className="rounded-lg" to="/services">
-                Services
-              </NavLink>
-            </li>
-            <li>
               <NavLink className="rounded-lg" to="/about">
-                About
+                My Portfolio
               </NavLink>
             </li>
             <li>
               <NavLink className="rounded-lg" to="/contact">
-                Contact
+                Blog
               </NavLink>
             </li>
             <li>
