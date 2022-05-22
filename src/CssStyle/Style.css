@@ -1,0 +1,37 @@
+/* Brands components bounce style */
+.bounce:hover{
+  animation: bounce 0.7s linear;
+}
+@keyframes bounce{
+ 30%, 60%, 90% {
+   transform: translateY(0);
+ }
+ 40%{
+   transform: translateY(-20px);
+ }
+ 70%{
+   transform: translateY(-10px);
+ }
+ 90%{
+   transform: translateY(-10);
+ }
+}
+
+/* PartsImage components bounce image */
+.bounce-style:hover {
+  animation: bounce 0.8s linear;
+}
+@keyframes bounce{
+ 30%, 60%, 90% {
+   transform: translateX(0);
+ }
+ 40%{
+   transform: translateX(-20px);
+ }
+ 70%{
+   transform: translateX(-10px);
+ }
+ 90%{
+   transform: translateX(-10);
+ }
+}

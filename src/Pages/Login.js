@@ -1,6 +1,12 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
+import Loading from "../Loading/Loading";
 
 const Login = () => {
   const {
@@ -9,8 +15,35 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  let signInError;
+
+  if (loading || gLoading) {
+    return <Loading />;
+  }
+
+  let from = location.state?.from?.pathname || "/";
+
+  
+  if (user || gUser) {
+    navigate(from, { replace: true });
+  }
+
+  if (error || gError) {
+    signInError = (
+      <p className="text-red-600">{error?.message || gError?.message}</p>
+    );
+  }
+
   const onSubmit = (data) => {
-    console.log(data);
+    signInWithEmailAndPassword(data.email, data.password);
   };
 
   return (
@@ -90,25 +123,31 @@ const Login = () => {
                   </label>
                 </div>
 
-                {/* {setError} */}
+                {signInError}
 
-                <input className="btn w-full" type="submit" value="Login" />
+                <input
+                  className="btn btn-primary w-full"
+                  type="submit"
+                  value="Login"
+                />
               </form>
 
               <p>
-                <small>
-                  Setup Project{" "}
-                  <Link
-                    to="/singUp"
-                    className="text-primary ml-0 md:ml-32 lg:ml-32"
-                  >
-                    Create an account
-                  </Link>
-                </small>
+                <Link
+                  to="/singUp"
+                  className="text-primary ml-0 md:ml-32 lg:ml-32"
+                >
+                  Create an account
+                </Link>
               </p>
 
               <div className="divider">OR</div>
-              <button className="btn btn-outline">CONTINUE WITH GOOGLE</button>
+              <button
+                onClick={() => signInWithGoogle()}
+                className="btn btn-primary btn-outline"
+              >
+                CONTINUE WITH GOOGLE
+              </button>
             </div>
           </div>
         </div>

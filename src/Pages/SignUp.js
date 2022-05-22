@@ -1,6 +1,14 @@
+import { async } from "@firebase/util";
 import React, { Fragment } from "react";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSendEmailVerification,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import auth from "../firebase.init";
+import Loading from "../Loading/Loading";
 
 const SignUp = () => {
   const {
@@ -9,8 +17,34 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
+  const [sendEmailVerification, sending, vError] =
+    useSendEmailVerification(auth);
+
+  const navigate = useNavigate();
+
+  let signUpError;
+
+  if (user) {
+    navigate("/");
+  }
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    signUpError = <p className="text-red-600">{error?.message}</p>;
+  }
+
+  const onSubmit = async (data) => {
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.name });
+    await sendEmailVerification();
   };
 
   return (
@@ -115,9 +149,13 @@ const SignUp = () => {
                   </label>
                 </div>
 
-                {/* {signUpError} */}
+                {signUpError}
 
-                <input className="btn w-full" type="submit" value="SIGN UP" />
+                <input
+                  className="btn btn-primary w-full"
+                  type="submit"
+                  value="SIGN UP"
+                />
               </form>
 
               <p>
@@ -130,9 +168,6 @@ const SignUp = () => {
                   </Link>
                 </small>
               </p>
-
-              <div className="divider">OR</div>
-              <button className="btn btn-outline">CONTINUE WITH GOOGLE</button>
             </div>
           </div>
         </div>

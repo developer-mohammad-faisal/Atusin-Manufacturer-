@@ -9,6 +9,7 @@ import MyOrder from "./Components/MyOrder";
 import AddReview from "./Components/AddReview";
 import MyProfile from "./Components/MyProfile";
 import Dashboard from "./Pages/Dashboard";
+import PrivateRoutes from "./Routes/PrivateRoutes";
 
 const App = () => {
   useEffect(() => {
@@ -23,7 +24,14 @@ const App = () => {
             <Route index={index} path={path} element={<Component />} />
           ))}
 
-          <Route path="/dashboard" element={<Dashboard />}>
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoutes>
+                <Dashboard />
+              </PrivateRoutes>
+            }
+          >
             <Route index element={<MyOrder />} />
             <Route path="addReview" element={<AddReview />} />
             <Route path="myProfile" element={<MyProfile />} />
