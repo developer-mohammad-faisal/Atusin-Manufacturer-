@@ -1,7 +1,9 @@
 import React, { Fragment } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PartsCard = ({ part }) => {
   const {
+    _id,
     img,
     name,
     description,
@@ -9,6 +11,12 @@ const PartsCard = ({ part }) => {
     availableQuantity,
     perPartsPrice,
   } = part;
+
+  const navigate = useNavigate();
+
+  const handleNavigate = id => {
+    navigate(`/purchase/${id}`)
+  }
 
   return (
     <Fragment>
@@ -21,7 +29,7 @@ const PartsCard = ({ part }) => {
           <p>{description.slice(0, 150)}...</p>
           <h2 className="text-1xl">
             {" "}
-            <span className="font-bold">Order Quantity</span> {orderQuantity}
+            <span className="font-bold">Min-Order Quantity</span> {orderQuantity}
           </h2>
           <h2 className="text-1xl">
             {" "}
@@ -33,7 +41,7 @@ const PartsCard = ({ part }) => {
             <span className="font-bold">Per Parts Price</span> ${perPartsPrice}
           </h2>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+            <button onClick={() => handleNavigate(_id)} className="btn btn-primary">Purchase Now</button>
           </div>
         </div>
       </div>
