@@ -21,7 +21,8 @@ const Portfolio = () => {
 
   return (
     <Fragment>
-      <section className="">
+      <section>
+        {/* About me Information */}
         <div class="hero min-h-screen px-16">
           <div class="hero-content flex-col lg:flex-row-reverse">
             <div class="avatar">
@@ -50,6 +51,7 @@ const Portfolio = () => {
           </div>
         </div>
 
+        {/* Technical Skills & Professional Skills */}
         <div className="flex gap-x-16 items-center px-16 pb-20 flex-col lg:flex-row">
           <div class="card flex-1 text-center bg-base-100 shadow-xl">
             <div class="card-body">
@@ -150,6 +152,7 @@ const Portfolio = () => {
           </div>
         </div>
 
+          {/* Some of my Project & Educations */}
         <div className="flex px-20 gap-8 pb-10 flex-col lg:flex-row">
           <div class="card flex-1 flex justify-center items-center bg-base-100 shadow-xl">
             <div class="card-body">
@@ -280,6 +283,7 @@ const Portfolio = () => {
           </div>
         </div>
 
+        {/* Contact me */}
         <div class=" flex items-center px-16 py-28 flex-col lg:flex-row">
           <div class=" flex-1 ">
             <img className="rounded-md" src={contactMe} alt="" />

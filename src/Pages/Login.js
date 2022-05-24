@@ -14,26 +14,24 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
-
+  
+  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
   const location = useLocation();
   const navigate = useNavigate();
 
+  let from = location.state?.from?.pathname || "/";
+  useEffect(() => {
+    if (user || gUser) {
+      navigate(from, { replace: true });
+    }
+  }, [user, gUser, from, navigate]);
+
   let signInError;
 
   if (loading || gLoading) {
     return <Loading />;
-  }
-
-  let from = location.state?.from?.pathname || "/";
-
-  
-  if (user || gUser) {
-    navigate(from, { replace: true });
   }
 
   if (error || gError) {

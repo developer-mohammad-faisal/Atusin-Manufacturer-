@@ -10,6 +10,7 @@ import AddReview from "./Components/AddReview";
 import MyProfile from "./Components/MyProfile";
 import Dashboard from "./Pages/Dashboard";
 import PrivateRoutes from "./Routes/PrivateRoutes";
+import ProtectedRoutes from "./Routes/ProtectedRoutes";
 
 const App = () => {
   useEffect(() => {
@@ -21,8 +22,14 @@ const App = () => {
       <Navbar>
         <Routes>
           {PublicRoutes.map(({ path, Component }, index) => (
-            <Route index={index} path={path} element={<Component />} />
+            <Route key={index} path={path} element={<Component />} />
           ))}
+
+          <Route element={<PrivateRoutes/>}>
+            {ProtectedRoutes.map(({ path, Component }, index) => (
+              <Route key={index} path={path} element={<Component />} />
+            ))}
+          </Route>
 
           <Route
             path="/dashboard"

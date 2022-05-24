@@ -26,7 +26,7 @@ const PartsCard = ({ part }) => {
         </figure>
         <div className="card-body ">
           <h2 className="card-title">{name}</h2>
-          <p>{description.slice(0, 150)}...</p>
+          <p>{description?.slice(0, 150)}...</p>
           <h2 className="text-1xl">
             {" "}
             <span className="font-bold">Min-Order Quantity</span> {orderQuantity}

@@ -1,16 +1,20 @@
 import React, { Fragment } from "react";
 
-const ReviewsCard = ({ review }) => {
-  const { profile, name, reviews, date } = review;
+const ReviewsCard = ({ r }) => {
+  const { profile, img, review,  name, reviews, date } = r;
 
   return (
     <Fragment>
       <div className="card shadow-lg bg-base-100">
         <div className="card-body hover:bg-slate-100  ">
           <div className="avatar flex items-center gap-x-2">
+
             <div className="w-10 rounded-full ring-offset-2">
-              <img src={profile} alt="" />
+              <img src={profile ? profile : img } alt="" />
             </div>
+
+        
+
             <div>
               <h1 className="text-xl"> {name} </h1>
             </div>
@@ -48,7 +52,7 @@ const ReviewsCard = ({ review }) => {
               checked
             />
           </div>
-          <p>{reviews.slice(0, 220)}...</p>
+          <p>{reviews ? reviews.slice(0, 180) : review.slice(0,180)}...</p>
         </div>
       </div>
     </Fragment>
