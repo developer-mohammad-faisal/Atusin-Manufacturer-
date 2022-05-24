@@ -11,6 +11,8 @@ import MyProfile from "./Components/MyProfile";
 import Dashboard from "./Pages/Dashboard";
 import PrivateRoutes from "./Routes/PrivateRoutes";
 import ProtectedRoutes from "./Routes/ProtectedRoutes";
+import AddAProduct from "./Components/AddAProduct";
+import ManageAllOrders from "./Components/ManageAllOrders";
 
 const App = () => {
   useEffect(() => {
@@ -42,9 +44,11 @@ const App = () => {
             <Route index element={<MyOrder />} />
             <Route path="addReview" element={<AddReview />} />
             <Route path="myProfile" element={<MyProfile />} />
+            <Route path="addAProduct" element={<AddAProduct />} />
+            <Route path="manageAllOrders" element={<ManageAllOrders />} />
           </Route>
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </Navbar>
     </Fragment>
   );

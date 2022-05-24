@@ -1,7 +1,13 @@
 import React, { Fragment } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet } from "react-router-dom";
+import auth from "../firebase.init";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
+  const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
+
   return (
     <Fragment>
       <div className="drawer drawer-mobile">
@@ -11,7 +17,7 @@ const Dashboard = () => {
           className="drawer-toggle"
         />
         <div className="drawer-content flex flex-col items-center justify-center">
-        <h2 className="text-3xl text-center mt-5 font-bold text-purple-500">
+          <h2 className="text-3xl text-center mt-5 font-bold text-purple-500">
             Welcome to your Dashboard
           </h2>
           <Outlet />
@@ -29,6 +35,16 @@ const Dashboard = () => {
             <li>
               <Link to="/dashboard/myProfile">My Profile</Link>
             </li>
+            {admin && (
+              <>
+                <li>
+                  <Link to="/dashboard/addAProduct">Add a Product</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/manageAllOrders">Manage all Orders</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

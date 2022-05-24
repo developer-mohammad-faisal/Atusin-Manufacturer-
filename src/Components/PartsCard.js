@@ -10,6 +10,7 @@ const PartsCard = ({ part }) => {
     orderQuantity,
     availableQuantity,
     perPartsPrice,
+    parts
   } = part;
 
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ const PartsCard = ({ part }) => {
           </h2>
           <h2 className="text-1xl">
             {" "}
-            <span className="font-bold">Per Parts Price</span> ${perPartsPrice}
+            <span className="font-bold">Per Parts Price</span> ${perPartsPrice ? perPartsPrice : parts }
           </h2>
           <div className="card-actions justify-end">
             <button onClick={() => handleNavigate(_id)} className="btn btn-primary">Purchase Now</button>

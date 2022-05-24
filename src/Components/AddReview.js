@@ -8,8 +8,6 @@ const AddReview = () => {
     handleSubmit,
     reset,
   } = useForm();
-  const [review, setReview] = useState(null);
-  console.log(review);
   const IMAGE_API_KEY = "146b5e8059de1e2fd396014ad251f3f0";
 
   const onSubmit = (data) => {
@@ -23,31 +21,27 @@ const AddReview = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-      console.log(result.data);
         if (result.success) {
-          setReview({
+          const review = {
             name: data.name,
+            date: data.date,
             img: result.data.url,
             review: data.reviews,
-          });
+          };
+          fetch("http://localhost:5000/reviews", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(review),
+          })
+            .then((res) => res.json())
+            .then((inserted) => {
+              console.log(inserted);
+              reset()
+            });
         }
       });
   };
 
-  useEffect(() => {
-    if (review) {
-      fetch("http://localhost:5000/reviews", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(review),
-      })
-        .then((res) => res.json())
-        .then((inserted) => {
-          console.log(inserted);
-          
-        });
-    }
-  }, [review]);
 
   return (
     <Fragment>
@@ -75,30 +69,6 @@ const AddReview = () => {
                 {errors.name?.type === "required" && (
                   <span className="label-text-alt text-red-500 ">
                     {errors.name.message}
-                  </span>
-                )}
-              </label>
-            </div>
-
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text">Reviews Date</span>
-              </label>
-              <input
-                type="date"
-                className="input  input-bordered w-full max-w-xs"
-                {...register("date", {
-                  required: {
-                    value: true,
-                    message: "Date is Required",
-                  },
-                })}
-              />
-
-              <label className="label">
-                {errors.date?.type === "required" && (
-                  <span className="label-text-alt text-red-500 ">
-                    {errors?.date?.message}
                   </span>
                 )}
               </label>
