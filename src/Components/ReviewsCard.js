@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 const ReviewsCard = ({ r }) => {
-  const { profile, img, review, name, reviews } = r;
+  const { profile, name, review } = r;
 
   return (
     <Fragment>
@@ -9,7 +9,7 @@ const ReviewsCard = ({ r }) => {
         <div className="card-body hover:bg-slate-100  ">
           <div className="avatar flex items-center gap-x-2">
             <div className="w-10 rounded-full ring-offset-2">
-              <img src={profile ? profile : img} alt="" />
+              <img src={profile} alt="" />
             </div>
 
             <div>
@@ -21,34 +21,29 @@ const ReviewsCard = ({ r }) => {
               type="radio"
               name="rating-1"
               className="mask mask-star-2 bg-orange-400"
-              checked
             />
             <input
               type="radio"
               name="rating-1"
               className="mask mask-star-2 bg-orange-400"
-              checked
             />
             <input
               type="radio"
               name="rating-1"
               className="mask mask-star-2 bg-orange-400"
-              checked
             />
             <input
               type="radio"
               name="rating-1"
               className="mask mask-star-2 bg-orange-400"
-              checked
             />
             <input
               type="radio"
               name="rating-1"
               className="mask mask-star-2 bg-orange-400"
-              checked
             />
           </div>
-          <p>{reviews ? reviews.slice(0, 180) : review.slice(0, 180)}...</p>
+          <p>{review?.slice(0, 180)}...</p>
         </div>
       </div>
     </Fragment>

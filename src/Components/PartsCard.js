@@ -10,14 +10,14 @@ const PartsCard = ({ part }) => {
     orderQuantity,
     availableQuantity,
     perPartsPrice,
-    parts
+    parts,
   } = part;
 
   const navigate = useNavigate();
 
-  const handleNavigate = id => {
-    navigate(`/purchase/${id}`)
-  }
+  const handleNavigate = (id) => {
+    navigate(`/purchase/${id}`);
+  };
 
   return (
     <Fragment>
@@ -30,7 +30,8 @@ const PartsCard = ({ part }) => {
           <p>{description?.slice(0, 150)}...</p>
           <h2 className="text-1xl">
             {" "}
-            <span className="font-bold">Min-Order Quantity</span> {orderQuantity}
+            <span className="font-bold">Min-Order Quantity</span>{" "}
+            {orderQuantity}
           </h2>
           <h2 className="text-1xl">
             {" "}
@@ -39,10 +40,16 @@ const PartsCard = ({ part }) => {
           </h2>
           <h2 className="text-1xl">
             {" "}
-            <span className="font-bold">Per Parts Price</span> ${perPartsPrice ? perPartsPrice : parts }
+            <span className="font-bold">Per Parts Price</span> $
+            {perPartsPrice ? perPartsPrice : parts}
           </h2>
           <div className="card-actions justify-end">
-            <button onClick={() => handleNavigate(_id)} className="btn btn-primary">Purchase Now</button>
+            <button
+              onClick={() => handleNavigate(_id)}
+              className="btn btn-primary"
+            >
+              Purchase Now
+            </button>
           </div>
         </div>
       </div>

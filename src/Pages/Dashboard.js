@@ -17,9 +17,7 @@ const Dashboard = () => {
           className="drawer-toggle"
         />
         <div className="drawer-content flex flex-col items-center justify-center">
-          <h2 className="text-3xl text-center mt-5 font-bold text-purple-500">
-            Welcome to your Dashboard
-          </h2>
+         
           <Outlet />
         </div>
 

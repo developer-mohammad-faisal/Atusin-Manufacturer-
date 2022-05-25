@@ -81,9 +81,11 @@ const Footer = () => {
           </div>
         </div>
       </footer>
+
+
       <div className="footer footer-center p-4 bg-base-300 text-base-content">
         <div>
-          <p>Copyright © 2022 - All right reserved by ACME Industries Ltd</p>
+          <p>Copyright © 2022 - All right reserved by Autusin</p>
         </div>
       </div>
     </Fragment>

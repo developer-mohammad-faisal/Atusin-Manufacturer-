@@ -16,7 +16,7 @@ const Brands = () => {
         <h1 className="text-center text-primary text-3xl font-bold">
           View a selection of our most popular makes
         </h1>
-        <div className="grid  gap-3 pt-8 mx-16 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+        <div className="grid  gap-3 pt-8 px-3 lg:px-16 grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {brands.map((brand , index) => (
             <div key={index} className="card shadow cursor-pointer">
               <div className="card-body bg-base-100">

@@ -11,7 +11,7 @@ const Navbar = ({ children }) => {
 
   return (
     <Fragment>
-      <div className="drawer drawer-end">
+      <div className="drawer lg:h-16 drawer-end">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           <div className="w-full navbar px-0 lg:px-16">

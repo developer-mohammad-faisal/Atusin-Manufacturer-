@@ -17,7 +17,7 @@ const Blog = () => {
         </h1>
         <div className="grid gap-8 pt-8 mx-16 grid-cols-1 lg:grid-cols-2">
           {blogs.map((blog) => (
-            <div className="card shadow-lg bg-base-100">
+            <div key={blog._id} className="card shadow-lg bg-base-100">
               <div className="card-body">
                 <h1 className="font-semibold text-xl" >{blog.question}</h1>
                 <p><small>{blog.answer}</small></p>
