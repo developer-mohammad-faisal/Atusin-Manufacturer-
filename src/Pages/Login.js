@@ -7,6 +7,7 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 import Loading from "../Loading/Loading";
+import useToken from "../Hooks/useToken";
 
 const Login = () => {
   const {
@@ -14,19 +15,22 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  
-  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
   const location = useLocation();
   const navigate = useNavigate();
 
   let from = location.state?.from?.pathname || "/";
+  const [token] = useToken(user || gUser);
+
   useEffect(() => {
-    if (user || gUser) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, gUser, from, navigate]);
+  }, [token, from, navigate]);
 
   let signInError;
 
@@ -133,7 +137,7 @@ const Login = () => {
               <p>
                 <Link
                   to="/singUp"
-                  className="text-primary ml-0 md:ml-32 lg:ml-32"
+                  className="text-primary ml-0 md:ml-40 lg:ml-40"
                 >
                   Create an account
                 </Link>

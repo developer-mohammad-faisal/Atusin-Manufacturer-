@@ -9,6 +9,11 @@ import auth from "../firebase.init";
 const Navbar = ({ children }) => {
   const [user] = useAuthState(auth);
 
+  const handleSignOut = () => {
+    signOut(auth);
+    localStorage.removeItem("accessToken");
+  };
+
   return (
     <Fragment>
       <div className="drawer lg:h-16 drawer-end">
@@ -78,7 +83,7 @@ const Navbar = ({ children }) => {
                 </li>
                 <li>
                   {user ? (
-                    <button onClick={() => signOut(auth)}>
+                    <button onClick={handleSignOut}>
                       Sign Out <FontAwesomeIcon icon={faRightFromBracket} />{" "}
                     </button>
                   ) : (

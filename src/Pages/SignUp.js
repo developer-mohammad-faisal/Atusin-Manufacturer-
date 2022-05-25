@@ -1,14 +1,14 @@
-import { async } from "@firebase/util";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSendEmailVerification,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
 import Loading from "../Loading/Loading";
+import useToken from ".././Hooks/useToken";
 
 const SignUp = () => {
   const {
@@ -25,13 +25,17 @@ const SignUp = () => {
   const [sendEmailVerification, sending, vError] =
     useSendEmailVerification(auth);
 
+  const [token] = useToken(user);
+
   const navigate = useNavigate();
 
   let signUpError;
 
-  if (user) {
-    navigate("/");
-  }
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token, navigate]);
 
   if (loading) {
     return <Loading />;

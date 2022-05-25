@@ -38,7 +38,7 @@ const Purchase = () => {
       yourName: e.target.yourName.value,
       email: e.target.email.value,
       location: e.target.location.value,
-      partName: name,
+      partsName: name,
     };
     fetch("http://localhost:5000/orders", {
       method: "POST",
@@ -51,7 +51,7 @@ const Purchase = () => {
       .then((Response) => Response.json())
       .then((data) => {
         console.log(data);
-        toast.success("Data Successful Submit");
+        toast.success("Successfully Order Placed");
         e.target.reset();
       });
   };
