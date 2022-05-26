@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   return (
     <Fragment>
-      <div className="drawer drawer-mobile">
+      <div className="drawer  drawer-mobile">
         <input
           id="Dashboard-sidebar"
           type="checkbox"

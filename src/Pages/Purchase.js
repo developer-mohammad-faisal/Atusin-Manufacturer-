@@ -9,7 +9,7 @@ const Purchase = () => {
   const { id } = useParams();
   const [purchase, setPurchase] = useState([]);
   const [btnDisable, setBtnDisable] = useState(false);
-  const [price, setPrice ] = useState(0)
+  const [price, setPrice] = useState(0);
   const [user, loading] = useAuthState(auth);
   console.log(price);
 
@@ -62,7 +62,7 @@ const Purchase = () => {
   const handleInput = (e) => {
     let quantity = parseInt(e.target.value);
     let totalPrice = parseInt(quantity * perPartsPrice);
-    setPrice(totalPrice)
+    setPrice(totalPrice);
     let partsQuantity = parseInt(availableQuantity);
     if (quantity > partsQuantity || quantity <= orderQuantity) {
       setBtnDisable(true);
@@ -123,6 +123,7 @@ const Purchase = () => {
                   <input
                     type="text"
                     placeholder="Name"
+                    required
                     name="yourName"
                     className="input w-full placeholder:text-[15px] py-5 mb-3 "
                     defaultValue={user?.displayName}
@@ -131,6 +132,7 @@ const Purchase = () => {
                   <input
                     type="text"
                     placeholder="Email"
+                    required
                     name="email"
                     className="input w-full placeholder:text-[15px] py-5 my-3"
                     defaultValue={user?.email}
@@ -139,21 +141,23 @@ const Purchase = () => {
                   <input
                     type="phone"
                     placeholder="Phone Number"
+                    required
                     className="input input-bordered w-full placeholder:text-[15px] py-5 my-3"
                   />
                   <input
                     type="text"
                     placeholder="Where to Ship"
+                    required
                     name="location"
                     className="input input-bordered  placeholder:text-[15px] py-5 my-3"
                   />
                   <input
                     type="number"
                     onChange={handleInput}
+                    required
                     placeholder="Quantity"
                     className="input w-2/6 input-bordered placeholder:text-[15px] py-5 my-3"
                   />{" "}
-
                   Total Price : {price}
                 </div>
 
