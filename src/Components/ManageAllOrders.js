@@ -1,7 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
 
 const ManageAllOrders = () => {
   const [orders, setOrders] = useState([]);
+
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
     fetch("http://localhost:5000/allOrders", {
@@ -14,7 +18,29 @@ const ManageAllOrders = () => {
       .then((data) => {
         setOrders(data);
       });
-  }, [orders]);
+  }, []);
+
+  const makeAdmin = () => {
+    fetch(`http://localhost:5000/all-orders/admin/${user?.email}`, {
+      method: "PUT",
+      headers: {
+        "content-type" : "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => {
+        // if (res.status === 403) {
+        //   toast.error("Failed to Make an admin");
+        // }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        // if (data.modifiedCount > 0) {
+        //   toast.success("Successfully make an Admin");
+        // }
+      });
+  };
 
   return (
     <Fragment>
@@ -40,7 +66,15 @@ const ManageAllOrders = () => {
                   <td>{orders.location}</td>
                   <td>{orders.partsName}</td>
                   <td>
-                    <button className="btn btn-sm uppercase">Make Admin</button>
+                    {orders.role !== "admin" ? (
+                      <button onClick={makeAdmin} class="btn btn-sm uppercase">
+                        Make Admin
+                      </button>
+                    ) : (
+                      <button onClick={makeAdmin} class="btn btn-sm uppercase">
+                        Already Admin
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}

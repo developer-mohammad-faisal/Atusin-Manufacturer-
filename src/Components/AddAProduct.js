@@ -29,7 +29,7 @@ const AddAProduct = () => {
             name: data.name,
             orderQuantity: data.orderQuantity,
             availableQuantity: data.availableQuantity,
-            perPartsPrice: data.perPartsPrice,
+            perPartsPrice: data.parts,
             img: result.data.url,
             description: data.description,
           };
@@ -40,6 +40,7 @@ const AddAProduct = () => {
           })
             .then((res) => res.json())
             .then((inserted) => {
+              console.log(inserted);
               if (inserted) {
                 toast.success("Successfully added Product");
                 reset();

@@ -17,7 +17,6 @@ const Dashboard = () => {
           className="drawer-toggle"
         />
         <div className="drawer-content">
-         
           <Outlet />
         </div>
 
@@ -32,17 +31,13 @@ const Dashboard = () => {
             </li>
             <li>
               <Link to="/dashboard/myProfile">My Profile</Link>
+            </li>{" "}
+            <li>
+              <Link to="/dashboard/addAProduct">Add a Product</Link>
             </li>
-            {admin && (
-              <>
-                <li>
-                  <Link to="/dashboard/addAProduct">Add a Product</Link>
-                </li>
-                <li>
-                  <Link to="/dashboard/manageAllOrders">Manage all Orders</Link>
-                </li>
-              </>
-            )}
+            <li>
+              <Link to="/dashboard/manageAllOrders">Manage all Orders</Link>
+            </li>{" "}
           </ul>
         </div>
       </div>

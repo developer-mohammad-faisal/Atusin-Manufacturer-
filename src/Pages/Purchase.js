@@ -9,7 +9,9 @@ const Purchase = () => {
   const { id } = useParams();
   const [purchase, setPurchase] = useState([]);
   const [btnDisable, setBtnDisable] = useState(false);
+  const [price, setPrice ] = useState(0)
   const [user, loading] = useAuthState(auth);
+  console.log(price);
 
   const {
     img,
@@ -38,6 +40,7 @@ const Purchase = () => {
       yourName: e.target.yourName.value,
       email: e.target.email.value,
       location: e.target.location.value,
+      totalPrice: price,
       partsName: name,
     };
     fetch("http://localhost:5000/orders", {
@@ -58,8 +61,10 @@ const Purchase = () => {
 
   const handleInput = (e) => {
     let quantity = parseInt(e.target.value);
+    let totalPrice = parseInt(quantity * perPartsPrice);
+    setPrice(totalPrice)
     let partsQuantity = parseInt(availableQuantity);
-    if (quantity > partsQuantity || quantity <= 100) {
+    if (quantity > partsQuantity || quantity <= orderQuantity) {
       setBtnDisable(true);
     } else {
       setBtnDisable(false);
@@ -148,6 +153,8 @@ const Purchase = () => {
                     placeholder="Quantity"
                     className="input w-2/6 input-bordered placeholder:text-[15px] py-5 my-3"
                   />{" "}
+
+                  Total Price : {price}
                 </div>
 
                 <button

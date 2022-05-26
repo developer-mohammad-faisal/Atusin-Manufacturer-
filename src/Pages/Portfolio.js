@@ -273,25 +273,24 @@ const Portfolio = () => {
               <div className="shadow-md py-4 px-3 rounded-md">
                 <h1 className="font-semibold">JSC 2018</h1>
                 <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Quibusdam possimus cum, reiciendis, nesciunt rem ut ipsum
-                  cupiditate. Et officiis libero quos veniam maiores architecto!
+                  Complete JSC in Mazidia Islamia Alim Madrasah Chittagong. and
+                  the passing year 2018 . the gpa we have gotten it's GPA 4.33
                 </p>
               </div>
               <div className="shadow-md py-4 px-3 rounded-md">
                 <h1 className="font-semibold">SSC 2020</h1>
                 <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Quibusdam possimus cum, reiciendis, nesciunt rem ut ipsum
-                  cupiditate. Et officiis libero quos veniam maiores architecto!
+                  I was a madrasha student . that's why i don't was a ssc
+                  candidate. i was a Dakhil Candidate. i allhamdulillah i Got
+                  GPA 4.50 in my Dakhil Exams
                 </p>
               </div>
               <div className="shadow-md py-4 px-3 rounded-md">
                 <h1 className="font-semibold">HSC 2022</h1>
                 <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Quibusdam possimus cum, reiciendis, nesciunt rem ut ipsum
-                  cupiditate. Et officiis libero quos veniam maiores architecto!
+                  After Completing My Dakhil exam i realized that i have to do
+                  something in tech field. and also love this site. that's why i
+                  admitted Baitus Saraf Adarsha Kamil (hon's, Master) Madrasah.
                 </p>
               </div>
             </div>

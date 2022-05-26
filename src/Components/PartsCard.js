@@ -10,7 +10,6 @@ const PartsCard = ({ part }) => {
     orderQuantity,
     availableQuantity,
     perPartsPrice,
-    parts,
   } = part;
 
   const navigate = useNavigate();
@@ -40,8 +39,7 @@ const PartsCard = ({ part }) => {
           </h2>
           <h2 className="text-1xl">
             {" "}
-            <span className="font-bold">Per Parts Price</span> $
-            {perPartsPrice ? perPartsPrice : parts}
+            <span className="font-bold">Per Parts Price</span> ${perPartsPrice}
           </h2>
           <div className="card-actions justify-end">
             <button
