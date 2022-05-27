@@ -24,7 +24,7 @@ const ManageAllOrders = () => {
     fetch(`http://localhost:5000/all-orders/admin/${user?.email}`, {
       method: "PUT",
       headers: {
-        "content-type" : "application/json",
+        "content-type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
@@ -66,15 +66,9 @@ const ManageAllOrders = () => {
                   <td>{orders.location}</td>
                   <td>{orders.partsName}</td>
                   <td>
-                    {orders.role !== "admin" ? (
-                      <button onClick={makeAdmin} class="btn btn-sm uppercase">
-                        Make Admin
-                      </button>
-                    ) : (
-                      <button onClick={makeAdmin} class="btn btn-sm uppercase">
-                        Already Admin
-                      </button>
-                    )}
+                    <button onClick={makeAdmin} class="btn btn-sm uppercase">
+                      Pending
+                    </button>
                   </td>
                 </tr>
               ))}

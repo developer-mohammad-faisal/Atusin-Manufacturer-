@@ -6,7 +6,7 @@ import auth from "../firebase.init";
 import useAdmin from "../Hooks/useAdmin";
 import Loading from "../Loading/Loading";
 
-const RequireAdmin = ({ children }) => {
+const PrivateAdmin = ({ children }) => {
   const [user, loading] = useAuthState(auth);
   const [admin, adminLoading] = useAdmin(user);
   const location = useLocation();
@@ -22,4 +22,4 @@ const RequireAdmin = ({ children }) => {
   return children;
 };
 
-export default RequireAdmin;
+export default PrivateAdmin;

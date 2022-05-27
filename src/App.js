@@ -17,6 +17,8 @@ import AddAProduct from "./Components/AddAProduct";
 import ManageAllOrders from "./Components/ManageAllOrders";
 import PrivateDashboard from "./Routes/PrivateDashboard";
 import Payment from "./Pages/Payment";
+import MakeAdmin from './Components/MakeAdmin'
+import PrivateAdmin from "./Routes/PrivateAdmin";
 
 const App = () => {
   useEffect(() => {
@@ -37,20 +39,17 @@ const App = () => {
           ))}
         </Route>
 
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateDashboard>
-              <Dashboard />
-            </PrivateDashboard>
-          }
-        >
+        <Route path="/dashboard"element={<PrivateDashboard><Dashboard /></PrivateDashboard>}>
+
           <Route index element={<MyOrder />} />
           <Route path="addReview" element={<AddReview />} />
           <Route path="myProfile" element={<MyProfile />} />
           <Route path="payment/:id" element={<Payment />} />
-          <Route path="addAProduct" element={<AddAProduct />} />
-          <Route path="manageAllOrders" element={<ManageAllOrders />} />
+
+          <Route path="addAProduct" element={<PrivateAdmin><AddAProduct /></PrivateAdmin>} />
+          <Route path="makeAdmin" element={<PrivateAdmin><MakeAdmin /></PrivateAdmin>} />
+          <Route path="manageAllOrders" element={<PrivateAdmin><ManageAllOrders /></PrivateAdmin>} />
+          
         </Route>
       </Routes>
       <ToastContainer />

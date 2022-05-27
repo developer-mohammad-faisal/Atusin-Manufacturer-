@@ -1,8 +1,11 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
+import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import CheckOut from "../Components/CheckOut";
+import CheckOutForm from "../Components/CheckOutForm";
+
+import Loading from "../Loading/Loading";
 
 const stripePromise = loadStripe(
   "pk_test_51L0X5rAxjpWoJGYr5aHyhZ5eHJvFOH0KlGPmI4mTEO7yaAztI54eQ4xxw4XQvEe9VNQBLHYRSSwQs3eMpJumKwXR00jTk9BSrY"
@@ -11,18 +14,19 @@ const stripePromise = loadStripe(
 const Payment = () => {
   const { id } = useParams();
 
-  const [payment, setPayment] = useState([]);
   const url = `http://localhost:5000/orders/${id}`;
-  useEffect(() => {
+  const { data: payment, isLoading } = useQuery(["orderCollection", id], () =>
     fetch(url, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
-    })
-      .then((res) => res.json())
-      .then((data) => setPayment(data));
-  }, [payment]);
+    }).then((res) => res.json())
+  );
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Fragment>
@@ -39,7 +43,7 @@ const Payment = () => {
       <div class="card flex-shrink-0 w-50 max-w-md shadow-2xl bg-base-100">
         <div class="card-body">
           <Elements stripe={stripePromise}>
-            <CheckOut payment={payment} />
+            <CheckOutForm payment={payment} />
           </Elements>
         </div>
       </div>

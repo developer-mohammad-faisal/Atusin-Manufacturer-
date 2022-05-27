@@ -13,7 +13,6 @@ import ProfileUpdateModal from "./ProfileUpdateModal";
 
 const MyProfile = () => {
   const [user] = useAuthState(auth);
-  console.log(user);
   const [openModal, setOpenModal] = useState(false);
   // const {
   //   isLoading,
