@@ -1,7 +1,7 @@
 
 # Project Details
 ## Project Name : Atusin
-### Live site link :  [Pionec paint tools menufecturer.](https://autusin-1db94.web.app/).
+### Live site link :  [Atusin.](https://autusin-1db94.web.app/).
 
 # Features
 - Responsive design for all devices
