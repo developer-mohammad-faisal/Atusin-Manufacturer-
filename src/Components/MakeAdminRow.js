@@ -12,13 +12,13 @@ const MakeAdminRow = ({ user, index, refetch }) => {
       },
     })
       .then((res) => {
-        if(res.status === 403){
-          toast.error('Failed to Make an Admin')
+        if (res.status === 403) {
+          toast.error("Failed to Make an Admin");
         }
-        return res.json()
+        return res.json();
       })
       .then((data) => {
-        if(data.modifiedCount > 0) {
+        if (data.modifiedCount > 0) {
           console.log(data);
           refetch();
           toast.success("Successfully Make an Admin");
@@ -37,13 +37,8 @@ const MakeAdminRow = ({ user, index, refetch }) => {
               Make Admin
             </button>
           ) : (
-            <p class="text-success">
-              Already Admin
-            </p>
+            <p class="text-success">Already Admin</p>
           )}
-        </td>
-        <td>
-          <button class="btn btn-xs">Delete User</button>
         </td>
       </tr>
     </Fragment>

@@ -19,6 +19,7 @@ import PrivateDashboard from "./Routes/PrivateDashboard";
 import Payment from "./Pages/Payment";
 import MakeAdmin from './Components/MakeAdmin'
 import PrivateAdmin from "./Routes/PrivateAdmin";
+import MangeProduct from "./Components/MangeProduct";
 
 const App = () => {
   useEffect(() => {
@@ -49,6 +50,7 @@ const App = () => {
           <Route path="addAProduct" element={<PrivateAdmin><AddAProduct /></PrivateAdmin>} />
           <Route path="makeAdmin" element={<PrivateAdmin><MakeAdmin /></PrivateAdmin>} />
           <Route path="manageAllOrders" element={<PrivateAdmin><ManageAllOrders /></PrivateAdmin>} />
+          <Route path="manageProduct" element={<PrivateAdmin><MangeProduct /></PrivateAdmin>} />
           
         </Route>
       </Routes>

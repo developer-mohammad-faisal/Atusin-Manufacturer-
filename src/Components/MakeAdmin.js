@@ -23,17 +23,16 @@ const MakeAdmin = () => {
 
   return (
     <Fragment>
-      <h2 className="text-2xl text-center ">All User {users.length}</h2>
-
-      <div class="overflow-x-auto">
-        <table class="table w-full">
+      <h2 className="text-3xl pt-5 font-semibold text-center ">All User {users.length}</h2>
+      
+      <div class="overflow-x-auto px-8 py-8 ">
+        <table class="table w-full text-center">
           <thead>
             <tr>
               <th></th>
               <th>Email</th>
               <th>Admin</th>
-              <th>Remove</th>
-            </tr>
+              </tr>
           </thead>
           <tbody>
             {users.map((user, index) => (

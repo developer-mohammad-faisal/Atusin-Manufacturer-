@@ -37,9 +37,9 @@ const MyOrder = () => {
   return (
     <Fragment>
       <section>
-        <div className="overflow-x-auto px-8 py-8 ">
-          <table className="table border w-full">
-            <thead className="text-center">
+        <div className="overflow-x-auto px-5 py-8 ">
+          <table className="table border w-full text-center">
+            <thead >
               <tr>
                 <th>id</th>
                 <th>Your Name</th>

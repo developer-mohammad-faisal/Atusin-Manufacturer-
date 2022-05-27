@@ -46,7 +46,7 @@ const ManageAllOrders = () => {
     <Fragment>
       <section>
         <div className="overflow-x-auto px-14 py-8 ">
-          <table className="table border w-full">
+          <table className="table text-center border w-full">
             <thead>
               <tr>
                 <th>id</th>
