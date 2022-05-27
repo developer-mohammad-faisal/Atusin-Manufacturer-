@@ -1,14 +1,17 @@
 import React, { Fragment, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
 import Loading from "../Loading/Loading";
 import { useQuery } from "react-query";
 import ConfirmModal from "./ConfirmModal";
+import useAdmin from "../Hooks/useAdmin";
 
 const MyOrder = () => {
   const [deletingOrders, setDeletingOrders] = useState(null);
   const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user)
+  const location = useLocation()
   const navigate = useNavigate();
 
   const {
@@ -29,6 +32,13 @@ const MyOrder = () => {
       return res.json();
     })
   );
+
+
+  console.log(orders);
+
+  if(admin && location.pathname === '/dashboard'){
+     navigate('/dashboard/myProfile')
+  }
 
   if (isLoading) {
     return <Loading />;
@@ -68,7 +78,7 @@ const MyOrder = () => {
                         </button>
                       </Link>
                     )}
-                    {/* {orders.paid && (
+                    {order.paid && (
                       <div>
                         <p>
                           <span className="text-success">Paid</span>
@@ -76,11 +86,11 @@ const MyOrder = () => {
                         <p>
                           Transaction id:{" "}
                           <span className="text-success">
-                            {orders.transactionId}
+                            {order.transactionId}
                           </span>
                         </p>
                       </div>
-                    )} */}
+                    )}
                   </td>
                   <td>
                     <label

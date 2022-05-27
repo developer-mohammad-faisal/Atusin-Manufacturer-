@@ -19,7 +19,7 @@ const ProfileUpdateModal = ({ setOpenModal, refetch }) => {
     console.log(data);
     if (phone && address && study && fb && insta && linkdin && github) {
       fetch(
-        `https://tranquil-earth-82270.herokuapp.com/current-user/${email}`,
+        `http://localhost:5000/currentUser/${email}`,
         {
           method: "PUT",
           headers: {

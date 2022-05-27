@@ -30,6 +30,7 @@ const Payment = () => {
 
   return (
     <Fragment>
+      <section className="flex justify-center items-center " >
       <div class="card w-50 max-w-md bg-base-100 shadow-xl my-12">
         <div class="card-body">
           <p className="text-success font-bold">Hello, {payment?.yourName}</p>
@@ -47,6 +48,7 @@ const Payment = () => {
           </Elements>
         </div>
       </div>
+      </section>
     </Fragment>
   );
 };

@@ -16,10 +16,10 @@ const Navbar = ({ children }) => {
 
   return (
     <Fragment>
-      <div className="drawer lg:h-16 drawer-end">
-        <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+      <div className="drawer   drawer-end">
+        <input id="my-drawer-3" type="checkbox" className="drawer-twoggle" />
         <div className="drawer-content flex flex-col">
-          <div className="w-full navbar px-0 lg:px-16">
+          <div className="navbar px-0">
             <label
               tabIndex="0"
               htmlFor="Dashboard-sidebar"

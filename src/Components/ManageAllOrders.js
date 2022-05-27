@@ -1,11 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../firebase.init";
 
 const ManageAllOrders = () => {
   const [orders, setOrders] = useState([]);
-
-  const [user] = useAuthState(auth);
 
   useEffect(() => {
     fetch("http://localhost:5000/allOrders", {
@@ -18,27 +14,31 @@ const ManageAllOrders = () => {
       .then((data) => {
         setOrders(data);
       });
-  }, []);
+  }, [orders]);
 
-  const makeAdmin = () => {
-    fetch(`http://localhost:5000/all-orders/admin/${user?.email}`, {
+  const handleUpdatePending = (_id) => {
+    fetch(`http://localhost:5000/pending/${_id}`, {
       method: "PUT",
       headers: {
-        "content-type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
-      .then((res) => {
-        // if (res.status === 403) {
-        //   toast.error("Failed to Make an admin");
-        // }
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        // if (data.modifiedCount > 0) {
-        //   toast.success("Successfully make an Admin");
-        // }
+      });
+  };
+
+  const handleOrderDelete = (_id) => {
+    fetch(`http://localhost:5000/orderDelete/${_id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
       });
   };
 
@@ -66,9 +66,28 @@ const ManageAllOrders = () => {
                   <td>{orders.location}</td>
                   <td>{orders.partsName}</td>
                   <td>
-                    <button onClick={makeAdmin} class="btn btn-sm uppercase">
-                      Pending
-                    </button>
+                    {!orders.paid ? (
+                      <>
+                        {" "}
+                        <button className="btn btn-sm btn-primary">
+                          Unpaid
+                        </button>{" "}
+                        <button onClick={() => handleOrderDelete(orders._id)} className="btn btn-sm btn-primary">
+                          Delete
+                        </button>
+                      </>
+                    ) : orders.pending ? (
+                      <button
+                        onClick={() => handleUpdatePending(orders._id)}
+                        className="btn btn-primary btn-sm"
+                      >
+                        Pending..
+                      </button>
+                    ) : (
+                      <p className="text-green-500 text-xl uppercase">
+                        Shipped
+                      </p>
+                    )}
                   </td>
                 </tr>
               ))}

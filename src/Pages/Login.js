@@ -51,7 +51,7 @@ const Login = () => {
   return (
     <Fragment>
       <section>
-        <div className="flex h-screen justify-center items-center">
+        <div className="flex h-screen mx-5 justify-center items-center">
           <div className="card w-96 bg-base-100 shadow-xl">
             <div className="card-body">
               <h2 className="text-3xl text-center font-bold">Login</h2>

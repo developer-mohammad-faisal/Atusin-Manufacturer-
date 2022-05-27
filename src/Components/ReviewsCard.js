@@ -7,13 +7,15 @@ const ReviewsCard = ({ r }) => {
     <Fragment>
       <div className="card shadow-lg bg-base-100">
         <div className="card-body hover:bg-slate-100  ">
-          <div className="avatar flex items-center gap-x-2">
-            <div className="w-10 rounded-full ring-offset-2">
-              <img src={profile} alt="" />
-            </div>
+          <div className="" >
+            <div className=" flex  items-center gap-x-3">
+              <div className="w-10 rounded-full ring-offset-2">
+                <img className="rounded-full" src={profile} alt="" />
+              </div>
 
-            <div>
-              <h1 className="text-xl"> {name} </h1>
+              <div>
+                <h1 className="text-xl"> {name} </h1>
+              </div>
             </div>
           </div>
           <div className="rating w-20">

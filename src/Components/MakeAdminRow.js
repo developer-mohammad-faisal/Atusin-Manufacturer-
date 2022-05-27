@@ -37,7 +37,7 @@ const MakeAdminRow = ({ user, index, refetch }) => {
               Make Admin
             </button>
           ) : (
-            <p class="text-success">Already Admin</p>
+            <p class="text-success font-semibold">Already Admin</p>
           )}
         </td>
       </tr>

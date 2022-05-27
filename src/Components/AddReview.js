@@ -49,7 +49,7 @@ const AddReview = () => {
   return (
     <Fragment>
       <section>
-        <section className="bg-base-100 mx-auto w-2/3 lg:w-1/2 rounded-md shadow-md py-8 mt-7">
+        <section className="bg-base-100 mx-auto w-5/6 md:w-2/3 lg:w-1/2 rounded-md shadow-md py-8 mt-7">
           <h2 className="text-2xl font-bold text-primary uppercase text-center">
             Add a Review
           </h2>
