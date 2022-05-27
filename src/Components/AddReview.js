@@ -28,7 +28,7 @@ const AddReview = () => {
             profile: result.data.url,
             review: data.reviews,
           };
-          fetch("http://localhost:5000/reviews", {
+          fetch("https://gentle-ridge-79225.herokuapp.com/reviews", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(review),

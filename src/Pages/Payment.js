@@ -14,7 +14,7 @@ const stripePromise = loadStripe(
 const Payment = () => {
   const { id } = useParams();
 
-  const url = `http://localhost:5000/orders/${id}`;
+  const url = `https://gentle-ridge-79225.herokuapp.com/orders/${id}`;
   const { data: payment, isLoading } = useQuery(["orderCollection", id], () =>
     fetch(url, {
       method: "GET",
@@ -30,24 +30,26 @@ const Payment = () => {
 
   return (
     <Fragment>
-      <section className="flex justify-center items-center " >
-      <div class="card w-50 max-w-md bg-base-100 shadow-xl my-12">
-        <div class="card-body">
-          <p className="text-success font-bold">Hello, {payment?.yourName}</p>
-          <h2 class="text-xl font-bold">
-            Please Pay for: {payment?.partsName}
-          </h2>
+      <section className=" bg-base-100 mx-auto w-5/6 md:w-2/3 lg:w-1/2 rounded-lg shadow-md py-8 mt-7">
+        <div class="card  flex items-center my-5">
+          <div class="card-body">
+            <p className="text-success text-3xl font-bold">
+              Hello, {payment?.yourName}
+            </p>
+            <h2 class="text-xl font-bold">
+              Please Pay for: {payment?.partsName}
+            </h2>
 
-          <p>Please pay: ${payment?.totalPrice}</p>
+            <p>Please pay: ${payment?.totalPrice}</p>
+          </div>
         </div>
-      </div>
-      <div class="card flex-shrink-0 w-50 max-w-md shadow-2xl bg-base-100">
-        <div class="card-body">
-          <Elements stripe={stripePromise}>
-            <CheckOutForm payment={payment} />
-          </Elements>
+        <div class="card flex-shrink-0 mx-12">
+          <div class="card-body">
+            <Elements stripe={stripePromise}>
+              <CheckOutForm payment={payment} />
+            </Elements>
+          </div>
         </div>
-      </div>
       </section>
     </Fragment>
   );

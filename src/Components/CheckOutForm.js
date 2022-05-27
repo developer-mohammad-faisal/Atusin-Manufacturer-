@@ -12,7 +12,7 @@ const CheckOutForm = ({ payment }) => {
   const { totalPrice, yourName, _id, email } = payment;
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://gentle-ridge-79225.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -22,7 +22,6 @@ const CheckOutForm = ({ payment }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.clientSecret) {
           setClientSecret(data.clientSecret);
         }
@@ -62,29 +61,27 @@ const CheckOutForm = ({ payment }) => {
       setCardError(intentError?.message);
     } else {
       setCardError("");
-      console.log(paymentIntent);
+
       setSuccess("Congratulations! Your Payment is Completed");
       setTransactionId(paymentIntent.id);
 
       const payment = {
         product: _id,
-        transactionId: paymentIntent.id
-      } 
-      console.log(payment);
+        transactionId: paymentIntent.id,
+      };
 
-      fetch(`http://localhost:5000/payment/${_id}`, {
-        method: 'PATCH',
+      fetch(`https://gentle-ridge-79225.herokuapp.com/payment/${_id}`, {
+        method: "PATCH",
         headers: {
-          'content-type' : 'application/json',
-          authorization: `Bearer ${localStorage.getItem('accessToken')}`
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
-        body: JSON.stringify(payment)
+        body: JSON.stringify(payment),
       })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        toast.success('Successfully Paid')
-      })
+        .then((res) => res.json())
+        .then((data) => {
+          toast.success("Successfully Paid");
+        });
     }
   };
   return (
@@ -109,7 +106,7 @@ const CheckOutForm = ({ payment }) => {
         <button
           className="btn btn-sm mt-5 btn-success"
           type="submit"
-          disabled={!stripe}
+          disabled={!stripe || !clientSecret || success}
         >
           Pay
         </button>

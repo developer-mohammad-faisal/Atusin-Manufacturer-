@@ -18,19 +18,20 @@ const MyProfile = () => {
   const [user] = useAuthState(auth);
   const [openModal, setOpenModal] = useState(false);
 
-  console.log(user);
-
   const {
     isLoading,
     data: currentUser,
     refetch,
   } = useQuery("users", () =>
-    fetch(`http://localhost:5000/currentUser?email=${user?.email}`, {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((res) => res.json())
+    fetch(
+      `https://gentle-ridge-79225.herokuapp.com/currentUser?email=${user?.email}`,
+      {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    ).then((res) => res.json())
   );
 
   if (isLoading) {

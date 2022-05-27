@@ -4,7 +4,7 @@ const ManageAllOrders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allOrders", {
+    fetch("https://gentle-ridge-79225.herokuapp.com/allOrders", {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -17,7 +17,7 @@ const ManageAllOrders = () => {
   }, [orders]);
 
   const handleUpdatePending = (_id) => {
-    fetch(`http://localhost:5000/pending/${_id}`, {
+    fetch(`https://gentle-ridge-79225.herokuapp.com/pending/${_id}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -30,16 +30,14 @@ const ManageAllOrders = () => {
   };
 
   const handleOrderDelete = (_id) => {
-    fetch(`http://localhost:5000/orderDelete/${_id}`, {
+    fetch(`https://gentle-ridge-79225.herokuapp.com/orderDelete/${_id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
+      .then((data) => {});
   };
 
   return (
@@ -69,10 +67,13 @@ const ManageAllOrders = () => {
                     {!orders.paid ? (
                       <>
                         {" "}
-                        <button className="btn btn-sm btn-primary">
+                        <button className="btn btn-sm btn-secondary">
                           Unpaid
                         </button>{" "}
-                        <button onClick={() => handleOrderDelete(orders._id)} className="btn btn-sm btn-primary">
+                        <button
+                          onClick={() => handleOrderDelete(orders._id)}
+                          className="btn btn-sm bg-red-500"
+                        >
                           Delete
                         </button>
                       </>

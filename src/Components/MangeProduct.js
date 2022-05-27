@@ -13,7 +13,7 @@ const MangeProduct = () => {
     isLoading,
     refetch,
   } = useQuery("partsCollection", () =>
-    fetch(` http://localhost:5000/parts`, {
+    fetch(` https://gentle-ridge-79225.herokuapp.com/parts`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -26,8 +26,6 @@ const MangeProduct = () => {
       return res.json();
     })
   );
-
-  console.log(parts);
 
   if (isLoading) {
     return <Loading />;
@@ -70,9 +68,9 @@ const MangeProduct = () => {
                     <label
                       onClick={() => setDeletingParts(p)}
                       for="deleting-modal"
-                      class="btn btn-sm btn-danger modal-button"
+                      class="btn btn-sm bg-red-500 modal-button"
                     >
-                     Delete
+                      Delete
                     </label>
                   </td>
                 </tr>

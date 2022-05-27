@@ -11,7 +11,6 @@ const Purchase = () => {
   const [btnDisable, setBtnDisable] = useState(false);
   const [price, setPrice] = useState(0);
   const [user, loading] = useAuthState(auth);
-  console.log(price);
 
   const {
     img,
@@ -23,7 +22,7 @@ const Purchase = () => {
   } = purchase;
 
   useEffect(() => {
-    const url = `http://localhost:5000/parts/${id}`;
+    const url = `https://gentle-ridge-79225.herokuapp.com/parts/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setPurchase(data));
@@ -35,7 +34,7 @@ const Purchase = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
+
     const partOrder = {
       yourName: e.target.yourName.value,
       email: e.target.email.value,
@@ -43,7 +42,7 @@ const Purchase = () => {
       totalPrice: price,
       partsName: name,
     };
-    fetch("http://localhost:5000/orders", {
+    fetch("https://gentle-ridge-79225.herokuapp.com/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -53,7 +52,6 @@ const Purchase = () => {
     })
       .then((Response) => Response.json())
       .then((data) => {
-        console.log(data);
         toast.success("Successfully Order Placed");
         e.target.reset();
       });
@@ -158,7 +156,7 @@ const Purchase = () => {
                     placeholder="Quantity"
                     className="input w-2/6 input-bordered placeholder:text-[15px] py-5 my-3"
                   />{" "}
-                  Total Price : {price}
+                  Total Price : ${price}
                 </div>
 
                 <button

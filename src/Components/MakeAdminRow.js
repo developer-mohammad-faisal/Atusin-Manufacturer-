@@ -5,7 +5,7 @@ const MakeAdminRow = ({ user, index, refetch }) => {
   const { email, role } = user;
 
   const handleMakeAdmin = () => {
-    fetch(`http://localhost:5000/user/admin/${email}`, {
+    fetch(`https://gentle-ridge-79225.herokuapp.com/user/admin/${email}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -19,7 +19,6 @@ const MakeAdminRow = ({ user, index, refetch }) => {
       })
       .then((data) => {
         if (data.modifiedCount > 0) {
-          console.log(data);
           refetch();
           toast.success("Successfully Make an Admin");
         }

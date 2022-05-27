@@ -16,23 +16,19 @@ const ProfileUpdateModal = ({ setOpenModal, refetch }) => {
     const linkdin = event.target.linkdin.value;
     const github = event.target.github.value;
     const data = { phone, address, study, fb, insta, linkdin, github };
-    console.log(data);
+
     if (phone && address && study && fb && insta && linkdin && github) {
-      fetch(
-        `http://localhost:5000/currentUser/${email}`,
-        {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-          body: JSON.stringify(data),
-        }
-      )
+      fetch(`https://gentle-ridge-79225.herokuapp.com/currentUser/${email}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify(data),
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data) {
-            console.log(data);
             refetch();
             toast.success("Profile Updated Successfully");
             setOpenModal(false);

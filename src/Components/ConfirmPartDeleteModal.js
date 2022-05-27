@@ -9,7 +9,7 @@ const ConfirmPartDeleteModal = ({
   const { name, _id } = deletingParts;
 
   const handleDelete = () => {
-    fetch(`http://localhost:5000/parts/${_id}`, {
+    fetch(`https://gentle-ridge-79225.herokuapp.com/parts/${_id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -17,7 +17,6 @@ const ConfirmPartDeleteModal = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.deletedCount) {
           toast.success(`Order ${name} is Deleted`);
           refetch();
@@ -35,8 +34,8 @@ const ConfirmPartDeleteModal = ({
             Are you sure you want to delete : {name}
           </h3>
           <p class="py-4">
-            You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
+            If you want to delete it permanently then yes then click Confirm
+            delete! <br /> If you do not want to delete, click Cancel
           </p>
           <div class="modal-action">
             <button

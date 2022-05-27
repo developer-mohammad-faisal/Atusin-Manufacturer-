@@ -10,8 +10,8 @@ import useAdmin from "../Hooks/useAdmin";
 const MyOrder = () => {
   const [deletingOrders, setDeletingOrders] = useState(null);
   const [user] = useAuthState(auth);
-  const [admin] = useAdmin(user)
-  const location = useLocation()
+  const [admin] = useAdmin(user);
+  const location = useLocation();
   const navigate = useNavigate();
 
   const {
@@ -19,12 +19,15 @@ const MyOrder = () => {
     isLoading,
     refetch,
   } = useQuery(["ordersCollection", user.email], () =>
-    fetch(` http://localhost:5000/orders?email=${user.email}`, {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((res) => {
+    fetch(
+      ` https://gentle-ridge-79225.herokuapp.com/orders?email=${user.email}`,
+      {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    ).then((res) => {
       if (res.status === 401 || res.status === 403) {
         localStorage.removeItem("accessToken");
         navigate("/");
@@ -33,11 +36,8 @@ const MyOrder = () => {
     })
   );
 
-
-  console.log(orders);
-
-  if(admin && location.pathname === '/dashboard'){
-     navigate('/dashboard/myProfile')
+  if (admin && location.pathname === "/dashboard") {
+    navigate("/dashboard/myProfile");
   }
 
   if (isLoading) {
@@ -49,7 +49,7 @@ const MyOrder = () => {
       <section>
         <div className="overflow-x-auto px-5 py-8 ">
           <table className="table border w-full text-center">
-            <thead >
+            <thead>
               <tr>
                 <th>id</th>
                 <th>Your Name</th>
@@ -93,13 +93,17 @@ const MyOrder = () => {
                     )}
                   </td>
                   <td>
-                    <label
-                      onClick={() => setDeletingOrders(order)}
-                      for="deleting-modal"
-                      class="btn btn-sm  modal-button"
-                    >
-                      Cancel
-                    </label>
+                    {order.paid ? (
+                      ""
+                    ) : (
+                      <label
+                        onClick={() => setDeletingOrders(order)}
+                        for="deleting-modal"
+                        class="btn btn-sm bg-red-500 text-white modal-button"
+                      >
+                        Cancel
+                      </label>
+                    )}
                   </td>
                 </tr>
               ))}

@@ -12,7 +12,6 @@ const AddAProduct = () => {
   const IMAGE_API_KEY = "146b5e8059de1e2fd396014ad251f3f0";
 
   const onSubmit = (data) => {
-    console.log(data);
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -23,7 +22,6 @@ const AddAProduct = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result.data);
         if (result.success) {
           const part = {
             name: data.name,
@@ -33,14 +31,13 @@ const AddAProduct = () => {
             img: result.data.url,
             description: data.description,
           };
-          fetch("http://localhost:5000/parts", {
+          fetch("https://gentle-ridge-79225.herokuapp.com/parts", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(part),
           })
             .then((res) => res.json())
             .then((inserted) => {
-              console.log(inserted);
               if (inserted) {
                 toast.success("Successfully added Product");
                 reset();
